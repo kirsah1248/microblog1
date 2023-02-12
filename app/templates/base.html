@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1><a href="/index">Home</a>    <a href="/songs">Songs</a>    <a href="/login">Login</a></h1>
+    </head>
+    <body>
+        <h1>You have stumbled across a Microblog! Congradulations</h1>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
