@@ -7,3 +7,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
+
+class OtherForm(FlaskForm):
+    grade = StringField('Enter Grade Here', validators=[DataRequired()])
+    submit = SubmitField('Submit Grades to Gradebook')
