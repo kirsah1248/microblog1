@@ -2,6 +2,13 @@
 <html>
     <head>
         <h1><a href="/index">Home</a>    <a href="/songs">Songs</a>    <a href="/login">Login</a>    <a href="/other_form">Grades</a></h1>
+        <div>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+        </div>
     </head>
     <body>
         <h1>You have stumbled across a Microblog! Congradulations</h1>
