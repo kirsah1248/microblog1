@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <h1><a href="{{ url_for('index') }}">Home</a>    <a href="{{ url_for('songs') }}">Songs</a>  <a href="{{ url_for('other_form') }}">Grades</a></h1>
+        <h1><a href="{{ url_for('index') }}">Home</a>    <a href="{{ url_for('songs') }}">Songs</a>  <a href="{{ url_for('other_form') }}">Grades</a>  <a href="{{ url_for('explore') }}">Explore</a></h1>
         <div>
             {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">Login</a>
