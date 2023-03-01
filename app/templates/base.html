@@ -1,28 +1,53 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <h1><a href="{{ url_for('index') }}">Home</a>    <a href="{{ url_for('songs') }}">Songs</a>  <a href="{{ url_for('other_form') }}">Grades</a>  <a href="{{ url_for('explore') }}">Explore</a></h1>
-        <div>
-            {% if current_user.is_anonymous %}
-            <a href="{{ url_for('login') }}">Login</a>
-            {% else %}
-            <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
-            {% endif %}
-        </div>
-    </head>
-    <body>
+{% extends 'bootstrap/base.html' %}
+    {% block navbar %}
+        <style>
+            h1{
+                padding-left: 2%;
+            }
+            a{
+                padding-left: 2%;  
+            }
+            .main{
+                padding-left: 0.5%;
+            }
+            .sub{
+                text-align: right;
+
+            }
+        </style>
+        <nav class="navbar navbar-default">
+            <div>
+            <h3>
+                <a href="{{ url_for('index') }}" class="main" style="padding-left:2%;">Home</a>
+                <a href="{{ url_for('songs') }}" class="main">Songs</a>
+                <a href="{{ url_for('other_form') }}"class="main" sytle="padding-left: 0%;">Grades</a>
+                <a href="{{ url_for('explore') }}" class="main">Explore</a>
+            </h3>
+            <h5 style="text-align: right; padding-right: 3%;">
+                {% if current_user.is_anonymous %}
+                <a href="{{ url_for('login') }}" class="sub">Login</a>
+                {% else %}
+                <a href="{{ url_for('user', username=current_user.username) }}" class="sub">Profile</a>
+                <a href="{{ url_for('logout') }}" class="sub">Logout</a>
+                {% endif %}
+            </h5>    
+            </div>
+            
+        </nav>
+            
+    {% endblock %}
+    {% block content %}
+    <div class="container">
         <h1>You have stumbled across a Microblog! Congratulations</h1>
-        <hr>
         {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-info" role="alert" style="padding-left:1%">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
         {% endwith %}
-        {% block content %}{% endblock %}
-    </body>
-</html>
+
+        {# application content needs to be provided in the app_content block #}
+        {% block app_content %}
+        {% endblock %}
+{% endblock %}
